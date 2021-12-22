@@ -4,7 +4,6 @@ import 'package:shopy/controller/HomeViewController.dart';
 import 'package:shopy/model/Product_model.dart';
 import 'package:shopy/Palette.dart';
 import 'package:shopy/model/Category_model.dart';
-import 'package:shopy/controller/HomeViewController.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 
 class HomeView extends StatefulWidget {
@@ -31,24 +30,6 @@ class _HomeViewState extends State<HomeView> {
   List<Category> categories = <Category>[];
   List<Product> products = <Product>[];
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    products.add(shoe);
-    products.add(shoe);
-    products.add(shoe);
-    products.add(shoe);
-    products.add(shoe);
-    categories.add(shoes);
-    categories.add(shoes);
-    categories.add(shoes);
-    categories.add(shoes);
-    categories.add(shoes);
-    categories.add(shoes);
-
-    categories.add(shoes);
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewController>(
@@ -103,19 +84,23 @@ class _HomeViewState extends State<HomeView> {
                 child: ListView.builder(
                   // shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
+                  itemCount: controller.categories.length,
                   itemBuilder: (context, index) {
                     return Container(
                       margin: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        // color: Cgris,
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                controller.categories[index].category_image),
+                            fit: BoxFit.cover),
                       ),
-                      height: 100,
-                      width: 100,
-                      child: Stack(children: [
-                        categories[index].category_image,
-                        Text(categories[index].category_name),
+                      height: 800,
+                      width: 200,
+                      child: Column(children: [
+                        Text(
+                          controller.categories[index].category_name,
+                        ),
                       ]),
                     );
                   },
