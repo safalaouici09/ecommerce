@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopy/helper/Binding.dart';
+import 'package:shopy/view/cart/cart_view.dart';
 import 'package:shopy/view/home/home_view.dart';
-
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: Binding(),
-      home: HomeView(),
+      home: Cart_View(),
+      //HomeView(),
     );
   }
 }

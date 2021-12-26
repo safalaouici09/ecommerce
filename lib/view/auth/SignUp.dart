@@ -102,7 +102,7 @@ class ColoredContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320,
+      width: 280,
       height: 50,
       decoration: BoxDecoration(
         color: color,

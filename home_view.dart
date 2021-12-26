@@ -16,13 +16,24 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _index = 0;
+  Product shoe = Product(
+      product_image: Image.asset('assets/chaussure.jpg'),
+      product_name: "man shoe");
+  Category shoes = Category(
+      category_name: "Shoes",
+      category_image: Image.asset(
+        'assets/chaussures.jpg',
+        height: 200,
+        width: 200,
+        fit: BoxFit.fill,
+      ));
+
+  @override
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewController>(
       builder: (controller) => controller.loading.value
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
+          ? Center(child: CircularProgressIndicator())
           : SafeArea(
               child: Scaffold(
               backgroundColor: Colors.white,
@@ -85,13 +96,12 @@ class _HomeViewState extends State<HomeView> {
                                       .categories[index].category_image),
                                   fit: BoxFit.cover),
                             ),
-                            height: 800,
+                            height: 80,
                             width: 200,
-                            child: Column(children: [
-                              Text(
-                                controller.categories[index].category_name,
-                              ),
-                            ]),
+                            child: Text(
+                              controller.categories[index].category_name,
+                              style: TextStyle(fontWeight: FontWeight.w700),
+                            ),
                           );
                         },
                       ),
@@ -119,23 +129,20 @@ class _HomeViewState extends State<HomeView> {
                                   margin: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
-                                    color: Cgris,
+                                    //   color: Cgris,
                                   ),
                                   height: 100,
                                   width: 100,
                                   child: Stack(children: [
-                                    Image.network(
-                                      controller.products[index].product_image,
-                                    ),
+                                    Image.network(controller
+                                        .products[index].product_image),
                                     Text(controller
                                         .products[index].product_name),
                                   ]),
                                 ),
                                 onTap: () {
-                                  Get.to(
-                                    Product_Details_View(
-                                        controller.products[index]),
-                                  );
+                                  Get.to(Product_Details_View(
+                                      controller.products[index]));
                                 },
                               );
                             }),
@@ -148,7 +155,7 @@ class _HomeViewState extends State<HomeView> {
                 backgroundColor: CdarkBlue,
                 selectedBackgroundColor: CdarkBlue,
                 selectedItemColor: Corange,
-                onTap: (int val) => setState(() => controller.getbutom(val)),
+                onTap: (int val) => setState(() => _index = val),
                 currentIndex: _index,
                 items: [
                   FloatingNavbarItem(icon: Icons.home, title: 'Home'),

@@ -41,6 +41,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts: 
+    - family: Mukta
+      fonts:
+        - asset: fonts/Mukta-Regular.ttf
+        - asset: fonts/Mukta-SemiBold.ttf
+          
 
   
   # assets:
