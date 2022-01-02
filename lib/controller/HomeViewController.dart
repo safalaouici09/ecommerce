@@ -55,9 +55,10 @@ class HomeViewController extends GetxController {
     update();
   }
 
-  getbutom(int val) {
-    print("val");
-    print(val);
+  getbutom() {
+    Get.to(Cart_View());
+    //print("val");
+    // print(val);
     // _index = val;
     /* switch (val) {
       case 0:

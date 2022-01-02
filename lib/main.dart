@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: Binding(),
-      home: Cart_View(),
+      home: HomeView(), //Cart_View(),
       //HomeView(),
     );
   }

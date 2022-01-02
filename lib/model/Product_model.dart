@@ -20,8 +20,8 @@ class Product {
     if (map == null) {
       print("no data found");
     } else {
-      product_image = map['categoryImage'];
-      product_name = map['categoryName'];
+      product_image = map['productImage'];
+      product_name = map['productName'];
     }
   }
   toJson() {

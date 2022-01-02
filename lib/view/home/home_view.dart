@@ -148,7 +148,7 @@ class _HomeViewState extends State<HomeView> {
                 backgroundColor: CdarkBlue,
                 selectedBackgroundColor: CdarkBlue,
                 selectedItemColor: Corange,
-                onTap: (int val) => setState(() => controller.getbutom(val)),
+                onTap: (int val) => setState(() => controller.getbutom()),
                 currentIndex: _index,
                 items: [
                   FloatingNavbarItem(icon: Icons.home, title: 'Home'),
