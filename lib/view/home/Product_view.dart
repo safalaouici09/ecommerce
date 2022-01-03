@@ -12,95 +12,95 @@ class Product_Details_View extends StatelessWidget {
   Product_Details_View(this.product);
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CartViewController>(builder: (controller) {
-      return Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                image: DecorationImage(
-                    image: NetworkImage(this.product.product_image),
-                    fit: BoxFit.cover),
-              ),
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              image: DecorationImage(
+                  image: NetworkImage(this.product.product_image),
+                  fit: BoxFit.cover),
             ),
-            Positioned(
-              top: 300,
-              left: 100,
-              child: Container(
-                height: 300,
-                width: 350,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xBF000000)),
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        this.product.product_name,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20,
-                        ),
+          ),
+          Positioned(
+            top: 300,
+            left: 100,
+            child: Container(
+              height: 300,
+              width: 350,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Color(0xBF000000)),
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      this.product.product_name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 20,
                       ),
-                      Text(
-                        "///////////////////////////////////////////////////////////dskdhbvjhdscwkjnxqbwghfkyuvifodpqskljwxhbceziuopawx;,:df",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
+                    ),
+                    Text(
+                      "///////////////////////////////////////////////////////////dskdhbvjhdscwkjnxqbwghfkyuvifodpqskljwxhbceziuopawx;,:df",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
-                      Text(
-                        this.product.price,
-                        style: TextStyle(color: Corange),
+                    ),
+                    Text(
+                      this.product.price,
+                      style: TextStyle(color: Corange),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Color(product.color),
+                          ),
+                        )
+                      ],
+                    ),
+                    Text(
+                      this.product.size,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
-                      Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Color(product.color),
-                            ),
-                          )
-                        ],
-                      ),
-                      Text(
-                        this.product.size,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          CartProduct cartProduct = new CartProduct(
-                              product_name: this.product.product_name,
-                              product_image: this.product.product_image,
-                              price: this.product.price,
-                              quantity: 1);
+                    ),
+                    GetBuilder<CartViewController>(
+                        init: CartViewController(),
+                        builder: (controller) {
+                          return GestureDetector(
+                            onTap: () {
+                              CartProduct cartProduct = new CartProduct(
+                                  product_name: this.product.product_name,
+                                  product_image: this.product.product_image,
+                                  price: this.product.price,
+                                  quantity: 1);
 
-                          controller.addProduct(cartProduct);
-                          Get.to(Cart_View());
-                          print("p");
-                          print(cartProduct.toJson());
-                        },
-                        child: ColoredContainer(
-                          text: "Add to bag",
-                          color: Corange,
-                        ),
-                      ),
-                    ],
-                  ),
+                              controller.addProduct(cartProduct);
+                              Get.to(Cart_View());
+                            },
+                            child: ColoredContainer(
+                              text: "Add to bag",
+                              color: Corange,
+                            ),
+                          );
+                        })
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
-      );
-    });
+          ),
+        ],
+      ),
+    );
   }
 }

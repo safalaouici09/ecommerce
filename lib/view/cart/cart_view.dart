@@ -11,87 +11,92 @@ class Cart_View extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // List<Product> products = <Product>[product1, product2, product3];
-    return GetBuilder<CartViewController>(builder: (controller) {
-      return Scaffold(
-        body: ListView.builder(
-            itemCount: controller.allProduct.length,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(8),
-                      width: MediaQuery.of(context).size.width / 3,
-                      height: MediaQuery.of(context).size.height / 3,
-                      decoration: BoxDecoration(
-                        // border: BoxBorder(),
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
+    return GetBuilder<CartViewController>(
+        init: CartViewController(),
+        builder: (controller) {
+          return Scaffold(
+            body: ListView.builder(
+                itemCount: controller.allProduct.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(8),
+                          width: MediaQuery.of(context).size.width / 3,
+                          height: MediaQuery.of(context).size.height / 3,
+                          decoration: BoxDecoration(
+                            // border: BoxBorder(),
+                            borderRadius: BorderRadius.circular(15),
+                            /*image: DecorationImage(
                           fit: BoxFit.cover,
                           image: AssetImage(
                             controller.allProduct[index].product_image,
                           ),
+                        ),*/
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          MyText(
-                            label: controller.allProduct[index].product_name,
-                            color: Colors.black,
-                            size: 25.00,
-                            weight: FontWeight.bold,
-                          ),
-                          Text("Size : " // + controller.allProduct[index].size,
-                              ),
-                          SizedBox(
-                            //Places des couleurs
-                            height: 40,
-                          ),
-                          Row(
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               MyText(
                                 label:
-                                    controller.allProduct[index].price + " AD",
-                                color: Corange,
-                                size: 18.00,
+                                    controller.allProduct[index].product_name,
+                                color: Colors.black,
+                                size: 25.00,
+                                weight: FontWeight.bold,
                               ),
+                              Text(
+                                  "Size : " // + controller.allProduct[index].size,
+                                  ),
                               SizedBox(
-                                width: 50,
+                                //Places des couleurs
+                                height: 40,
                               ),
-                              GestureDetector(
-                                //   onTap: () => controller.minQuantity(),
-                                child: Circular(
-                                  icon: Icons.minimize,
-                                ),
-                              ),
-                              //  Text(),
-                              GestureDetector(
-                                //    onTap: () => controller.addQuantity(),
-                                child: Circular(
-                                  icon: Icons.add,
-                                ),
-                              ),
+                              Row(
+                                children: [
+                                  MyText(
+                                    label: controller.allProduct[index].price
+                                            .toString() +
+                                        " AD",
+                                    color: Corange,
+                                    size: 18.00,
+                                  ),
+                                  SizedBox(
+                                    width: 50,
+                                  ),
+                                  GestureDetector(
+                                    //   onTap: () => controller.minQuantity(),
+                                    child: Circular(
+                                      icon: Icons.minimize,
+                                    ),
+                                  ),
+                                  //  Text(),
+                                  GestureDetector(
+                                    //    onTap: () => controller.addQuantity(),
+                                    child: Circular(
+                                      icon: Icons.add,
+                                    ),
+                                  ),
+                                ],
+                              )
                             ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              );
-            }),
-      );
-    });
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+          );
+        });
   }
 }
 

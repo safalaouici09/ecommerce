@@ -1,8 +1,4 @@
-import 'package:flutter/cupertino.dart';
-
 class CartProduct {
-  // Category category;
-  //String id
   var product_name;
   var product_image;
   var price;
