@@ -8,42 +8,33 @@ import 'package:shopy/model/Product_model.dart';
 class CartViewController extends GetxController {
   ValueNotifier<bool> get loading => _loading;
   ValueNotifier<bool> _loading = ValueNotifier(false);
-  List<CartProduct> get allProduct => allProduct;
-  List<CartProduct> _allProduct = [];
-  CartProduct cartProduct1 =
-      CartProduct(product_name: " skirt1", price: "18", quantity: 5);
-  CartProduct cartProduct2 =
-      CartProduct(product_name: " skirt1", price: "18", quantity: 5);
+  List<CartProduct> get cartProducts => _cartProducts;
 
-  CartProduct cartProduct3 =
-      CartProduct(product_name: " skirt1", price: "18", quantity: 5);
+  var _cartProducts = <CartProduct>[];
+  @override
+  CartViewController() {
+    _getData();
+    //_cartProducts.add(CartProduct("skiiirt", "7", "50", 1));
+  }
 
-  addProduct(CartProduct cartProduct) async {
-    //var dbHelper = CartDB.db;
-    await CartDB.db.insert(cartProduct);
+  void _getData() async {
+    _loading.value = true;
+    await DatabaseHelper.instance.queryAllRows().then((value) {
+      value.forEach((element) {
+        _cartProducts.add(CartProduct(element['name'], element['image'],
+            element['price'], element['quantity']));
+      });
+    });
+    _loading.value = false;
     update();
   }
 
-  CartViewController() {
-    // getAllPros();
-    _getData();
-    addProduct(cartProduct1);
-    addProduct(cartProduct2);
-    addProduct(cartProduct3);
-  }
-  void _getData() {
-    CartDB.db.queryAll().then((value) {
-      value.forEach((element) {
-        _allProduct.add(CartProduct(
-            product_image: element['image'],
-            product_name: element['name'],
-            price: element['price'],
-            quantity: element['quantity']));
-        update();
-      });
-    });
+  void addData(CartProduct cartProduct) async {
+    _loading.value = true;
+    await DatabaseHelper.instance.insert(cartProduct);
 
-    print(_allProduct.length);
+    _loading.value = false;
+    update();
   }
 
   /* getAllPros() async {

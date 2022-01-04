@@ -1,32 +1,19 @@
-class CartProduct {
-  var product_name;
-  var product_image;
-  var price;
-  var quantity;
+import 'package:flutter/material.dart';
 
-  CartProduct({
-    this.product_image,
-    this.product_name,
-    this.price,
-    this.quantity,
-  });
-  fromjson(Map<dynamic, dynamic> map) {
-    if (map == null) {
-      print("no data found");
-    } else {
-      product_image = map['image'];
-      product_name = map['name'];
-      price = map['price'];
-      quantity = map['quantity'];
-    }
+class CartProduct {
+  String name = "";
+  String image = "";
+  String price = "";
+  int quantity = 0;
+
+  CartProduct(String name, String image, String price, int quantity) {
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+    this.image = image;
   }
 
-  toJson() {
-    return {
-      'name': product_name,
-      'image': product_image,
-      'price': price,
-      'quantity': quantity
-    };
+  Map<String, dynamic> toMap() {
+    return {'name': name, 'image': image, 'price': price, 'quantity': quantity};
   }
 }

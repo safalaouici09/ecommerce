@@ -1,63 +1,54 @@
-import 'package:shopy/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:shopy/model/CartProduct_model.dart';
 
-class CartDB {
-  static final String tableName = 'ProductCartTable';
-  static final String colName = "name";
-  static final String colImage = "image";
-  static final String colPrice = "price";
-  static final String colQuantity = "quantity";
-  static final _dbName = "cartdb.db";
-  static final _dbVersion = 1;
+class DatabaseHelper {
+  static final _databaseName = "DATABASE.db";
+  static final _databaseVersion = 1;
+  static final table = "CartTable";
+  static final columnName = 'name';
+  static final columnPrice = 'price';
+  static final columnQuantity = 'quantity';
+  static final columnImage = 'image';
 
-  CartDB._privateConstructor();
-  static final CartDB db = CartDB._privateConstructor();
+  DatabaseHelper._privateConstructor();
+
+  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
   static Database? _database;
   Future get database async {
     if (_database != null) return _database;
-    _database = await initDB();
+    _database = await _initDatabase();
     return _database;
   }
 
-  initDB() async {
-    String path = join(await getDatabasesPath(), _dbName);
-    return await openDatabase(path, version: _dbVersion,
-        onCreate: (Database db, int version) async {
-      await db.execute('''
-      CREATE TABLE $tableName(
-         $colName TEXT PRIMARY KEY ,
-        $colImage TEXT ,
-    $colPrice TEXT ,
-        $colQuantity TEXT 
-      )
-     ''');
-    });
+  _initDatabase() async {
+    String path = join(await getDatabasesPath(), _databaseName);
+    return await openDatabase(path,
+        version: _databaseVersion, onCreate: _onCreate);
   }
 
-  Future<List> getAllPros() async {
-    Database dbClient = await db.database;
-
-    List<Map> maps = await dbClient.query(tableName);
-    List list = maps.isNotEmpty
-        ? maps.map((Product) => CartProduct().fromjson(Product)).toList()
-        : [];
-
-    return list;
+  Future _onCreate(Database db, int version) async {
+    await db.execute('''
+  CREATE TABLE $table (
+    $columnName TEXT NOT NULL ,
+    $columnPrice TEXT NOT NULL , 
+    $columnImage TEXT NOT NULL,
+    $columnQuantity INTEGER NOT NULL
+  )
+  ''');
   }
 
-  Future<List<Map<String, dynamic>>> queryAll() async {
-    Database dbClient = await db.database;
-    var result = await dbClient.query(tableName);
-    print(result);
-    return result;
+  Future<int> insert(CartProduct cartProduct) async {
+    Database db = await instance.database;
+    var res = await db.insert(table, cartProduct.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.ignore);
+    return res;
   }
 
-  insert(CartProduct cartProduct) async {
-    Database dbClient = await db.database;
-    await dbClient.insert(tableName, cartProduct.toJson(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
-    print("product added ");
+  Future<List<Map<String, dynamic>>> queryAllRows() async {
+    Database db = await instance.database;
+    var res = await db.query(table);
+    return res;
   }
 }

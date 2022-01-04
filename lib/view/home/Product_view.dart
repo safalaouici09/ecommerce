@@ -5,7 +5,7 @@ import 'package:shopy/model/CartProduct_model.dart';
 import 'package:shopy/model/Product_model.dart';
 import 'package:shopy/view/auth/SignUp.dart';
 import 'package:get/get.dart';
-import 'package:shopy/view/cart/cart_view.dart';
+import 'package:shopy/view/cart/cart.dart';
 
 class Product_Details_View extends StatelessWidget {
   Product product; // =Product(product_name: "",product_image: "");
@@ -79,14 +79,12 @@ class Product_Details_View extends StatelessWidget {
                         builder: (controller) {
                           return GestureDetector(
                             onTap: () {
-                              CartProduct cartProduct = new CartProduct(
-                                  product_name: this.product.product_name,
-                                  product_image: this.product.product_image,
-                                  price: this.product.price,
-                                  quantity: 1);
-
-                              controller.addProduct(cartProduct);
-                              Get.to(Cart_View());
+                              controller.addData(CartProduct(
+                                  this.product.product_name,
+                                  this.product.product_image,
+                                  this.product.price,
+                                  5));
+                              Get.to(Screen());
                             },
                             child: ColoredContainer(
                               text: "Add to bag",
