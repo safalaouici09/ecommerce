@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopy/controller/CartViewController.dart';
-import 'package:shopy/model/CartProduct_model.dart';
 import 'package:get/get.dart';
-import 'package:shopy/constant.dart';
+import 'package:shopy/MyText.dart';
 import 'package:shopy/Palette.dart';
 
 class Screen extends StatelessWidget {

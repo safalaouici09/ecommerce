@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:shopy/view/home/home_view.dart';
-import 'package:shopy/view/cart/cart_view.dart';
+import 'package:shopy/view/cart/cart.dart';
 import 'package:shopy/model/Category_model.dart';
 import 'package:shopy/model/Product_model.dart';
 
@@ -56,7 +56,7 @@ class HomeViewController extends GetxController {
   }
 
   getbutom() {
-    Get.to(Cart_View());
+    Get.to(Screen());
     //print("val");
     // print(val);
     // _index = val;

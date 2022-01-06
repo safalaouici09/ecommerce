@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopy/MyText.dart';
 import 'package:shopy/controller/HomeViewController.dart';
-import 'package:shopy/model/Product_model.dart';
 import 'package:shopy/Palette.dart';
-import 'package:shopy/model/Category_model.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:shopy/view/home/Product_view.dart';
 
@@ -26,11 +25,46 @@ class _HomeViewState extends State<HomeView> {
           : SafeArea(
               child: Scaffold(
               backgroundColor: Colors.white,
+              appBar: AppBar(
+                elevation: 0.0,
+                backgroundColor: Colors.white,
+                title: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.menu,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 280,
+                      ),
+                      Icon(
+                        Icons.notifications,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               body: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
                   children: [
+                    MyBoldText(
+                      label: "What item are ",
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    MyBoldText(
+                      label: " you looking for ? ",
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
                     Row(
                       children: [
                         Flexible(
@@ -62,13 +96,8 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ],
                     ),
-                    Text(
-                      "categories ",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    MyBoldText(
+                        label: "Categories ", size: 20.0, color: Colors.black),
                     Container(
                       height: 250,
                       child: ListView.builder(
@@ -76,71 +105,81 @@ class _HomeViewState extends State<HomeView> {
                         scrollDirection: Axis.horizontal,
                         itemCount: controller.categories.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                  image: NetworkImage(controller
-                                      .categories[index].category_image),
-                                  fit: BoxFit.cover),
-                            ),
-                            height: 800,
-                            width: 200,
-                            child: Column(children: [
-                              Text(
-                                controller.categories[index].category_name,
+                          return Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                      image: NetworkImage(controller
+                                          .categories[index].category_image),
+                                      fit: BoxFit.cover),
+                                ),
+                                height: 200,
+                                width: 150,
                               ),
-                            ]),
+                              MyBoldText(
+                                label:
+                                    controller.categories[index].category_name,
+                                size: 15.0,
+                                color: Colors.black87,
+                              ),
+                              //TODO:ANIMATION
+                            ],
                           );
                         },
                       ),
                     ),
-                    Text(
-                      "Best Sellings ",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 250,
-                        child: GridView.builder(
-                            scrollDirection: Axis.vertical,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                            ),
-                            itemCount: controller.products.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                child: Container(
-                                  margin: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: Cgris,
-                                  ),
-                                  height: 100,
-                                  width: 100,
-                                  child: Stack(children: [
-                                    Image.network(
-                                      controller.products[index].product_image,
+                    MyBoldText(
+                        label: "Best Sellings ",
+                        size: 20.0,
+                        color: Colors.black),
+                    Container(
+                      height: 400,
+                      child: ListView.builder(
+                          // shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller.products.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(Product_Details_View(
+                                    controller.products[index]));
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                          image: NetworkImage(controller
+                                              .products[index].product_image),
+                                          fit: BoxFit.cover),
                                     ),
-                                    Text(controller
-                                        .products[index].product_name),
-                                  ]),
-                                ),
-                                onTap: () {
-                                  Get.to(
-                                    Product_Details_View(
-                                        controller.products[index]),
-                                  );
-                                },
-                              );
-                            }),
-                      ),
-                    ),
+                                    height: 200,
+                                    width: 120,
+                                  ),
+                                  MyBoldText(
+                                    label:
+                                        controller.products[index].product_name,
+                                    size: 20.0,
+                                    color: Colors.black87,
+                                  ),
+
+                                  MyText(
+                                    label: controller.products[0].price,
+                                    color: Corange,
+                                    size: 15.0,
+                                  )
+
+                                  //TODO:ANIMATION
+                                ],
+                              ),
+                            );
+                          }),
+                    )
                   ],
                 ),
               ),
@@ -153,7 +192,6 @@ class _HomeViewState extends State<HomeView> {
                 items: [
                   FloatingNavbarItem(icon: Icons.home, title: 'Home'),
                   FloatingNavbarItem(icon: Icons.shopping_cart, title: 'Cart'),
-                  // FloatingNavbarItem(icon: Icons.chat_bubble_outline, title: 'Chats'),
                   FloatingNavbarItem(icon: Icons.person, title: 'Profile'),
                 ],
               ),

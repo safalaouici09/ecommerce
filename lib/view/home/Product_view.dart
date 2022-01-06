@@ -27,7 +27,6 @@ class Product_Details_View extends StatelessWidget {
             top: 300,
             left: 100,
             child: Container(
-              height: 300,
               width: 350,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -47,7 +46,7 @@ class Product_Details_View extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "///////////////////////////////////////////////////////////dskdhbvjhdscwkjnxqbwghfkyuvifodpqskljwxhbceziuopawx;,:df",
+                      "dskdhbvjhdscwkjnxqbwgnhfkyuvifoddskdhbvjhdscwkjnxqbwgnhfkyuvifodpdskdhbvjhdscwkjnxqbwgnhfkyuvifodpqskljwxhbceziuopawx;,:df",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -62,7 +61,7 @@ class Product_Details_View extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Color(product.color),
+                            // color: Color(product.color),
                           ),
                         )
                       ],
@@ -84,7 +83,7 @@ class Product_Details_View extends StatelessWidget {
                                   this.product.product_image,
                                   this.product.price,
                                   5));
-                              Get.to(Screen());
+                              // Get.to(Screen());
                             },
                             child: ColoredContainer(
                               text: "Add to bag",

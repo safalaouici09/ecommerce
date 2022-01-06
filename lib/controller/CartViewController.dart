@@ -14,7 +14,6 @@ class CartViewController extends GetxController {
   @override
   CartViewController() {
     _getData();
-    //_cartProducts.add(CartProduct("skiiirt", "7", "50", 1));
   }
 
   void _getData() async {
@@ -36,13 +35,4 @@ class CartViewController extends GetxController {
     _loading.value = false;
     update();
   }
-
-  /* getAllPros() async {
-    _loading.value = true;
-    // var dbHelper = CartDB.db;
-    _allProduct = await CartDB.db.getAllPros();
-
-    _loading.value = false;
-    update();
-  }*/
 }

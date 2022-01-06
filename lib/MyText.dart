@@ -22,3 +22,24 @@ class MyText extends StatelessWidget {
     );
   }
 }
+
+class MyBoldText extends StatelessWidget {
+  var label;
+  var size;
+  var color; //  = Colors.black;
+  var weight;
+  MyBoldText({this.label, this.color, this.size, this.weight, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      label,
+      style: TextStyle(
+          fontSize: size,
+          fontFamily: 'Mukta',
+          color: color,
+          fontWeight: FontWeight.w900),
+    );
+  }
+}
