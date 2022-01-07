@@ -79,10 +79,11 @@ class Product_Details_View extends StatelessWidget {
                           return GestureDetector(
                             onTap: () {
                               controller.addData(CartProduct(
+                                  this.product.product_id,
                                   this.product.product_name,
                                   this.product.product_image,
                                   this.product.price,
-                                  5));
+                                  1));
                               // Get.to(Screen());
                             },
                             child: ColoredContainer(

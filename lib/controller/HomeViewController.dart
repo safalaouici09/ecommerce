@@ -14,6 +14,8 @@ class HomeViewController extends GetxController {
   List<Product> _products = <Product>[];
   ValueNotifier<bool> get loading => _loading;
   ValueNotifier<bool> _loading = ValueNotifier(false);
+  int _navigationIndex = 0;
+  get navigationIndex => _navigationIndex;
 
   HomeViewController() {
     getCategory();
@@ -44,6 +46,7 @@ class HomeViewController extends GetxController {
 
     docs.forEach((doc) {
       Product product = new Product(
+          product_id: doc["productId"],
           product_name: doc["productName"],
           product_image: doc["productImage"],
           price: doc["productPrice"],
@@ -55,22 +58,8 @@ class HomeViewController extends GetxController {
     update();
   }
 
-  getbutom() {
-    Get.to(Screen());
-    //print("val");
-    // print(val);
-    // _index = val;
-    /* switch (val) {
-      case 0:
-        {
-          Get.to(HomeView());
-        }
-        break;
-      case 1:
-        {
-          Get.to(Cart_View());
-        }
-        break;}
-    }*/
+  getbutom(int selectedValue) {
+    _navigationIndex = selectedValue;
+    update();
   }
 }

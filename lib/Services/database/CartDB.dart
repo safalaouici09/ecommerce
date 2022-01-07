@@ -4,9 +4,10 @@ import 'package:path/path.dart';
 import 'package:shopy/model/CartProduct_model.dart';
 
 class DatabaseHelper {
-  static final _databaseName = "DATABASE.db";
+  static final _databaseName = "myBase3.db";
   static final _databaseVersion = 1;
   static final table = "CartTable";
+  static final columnId = 'id';
   static final columnName = 'name';
   static final columnPrice = 'price';
   static final columnQuantity = 'quantity';
@@ -31,6 +32,7 @@ class DatabaseHelper {
   Future _onCreate(Database db, int version) async {
     await db.execute('''
   CREATE TABLE $table (
+    $columnId  TEXT NOT NULL PRIMARY KEY ,
     $columnName TEXT NOT NULL ,
     $columnPrice TEXT NOT NULL , 
     $columnImage TEXT NOT NULL,
@@ -42,7 +44,7 @@ class DatabaseHelper {
   Future<int> insert(CartProduct cartProduct) async {
     Database db = await instance.database;
     var res = await db.insert(table, cartProduct.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.ignore);
+        conflictAlgorithm: ConflictAlgorithm.replace);
     return res;
   }
 
@@ -50,5 +52,11 @@ class DatabaseHelper {
     Database db = await instance.database;
     var res = await db.query(table);
     return res;
+  }
+
+  Future<void> update(CartProduct cartProduct) async {
+    Database db = await instance.database;
+    await db.update(table, cartProduct.toMap(),
+        where: "id = ?", whereArgs: [cartProduct.id]);
   }
 }

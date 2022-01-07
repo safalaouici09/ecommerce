@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 class Product {
   // Category category;
   //String id
+  var product_id;
   var product_name;
   var product_image;
   var price;
@@ -10,7 +11,8 @@ class Product {
   var color;
   var sexe;
   Product(
-      {this.product_image,
+      {this.product_id,
+      this.product_image,
       this.product_name,
       this.price,
       this.size,

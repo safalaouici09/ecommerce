@@ -14,10 +14,10 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  int _index = 0;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewController>(
+      init: HomeViewController(),
       builder: (controller) => controller.loading.value
           ? Center(
               child: CircularProgressIndicator(),
@@ -144,6 +144,8 @@ class _HomeViewState extends State<HomeView> {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
+                                print("iiiiiffddddd");
+                                print(controller.products[index].product_id);
                                 Get.to(Product_Details_View(
                                     controller.products[index]));
                               },
@@ -167,14 +169,11 @@ class _HomeViewState extends State<HomeView> {
                                     size: 20.0,
                                     color: Colors.black87,
                                   ),
-
                                   MyText(
-                                    label: controller.products[0].price,
+                                    label: controller.products[index].price,
                                     color: Corange,
                                     size: 15.0,
                                   )
-
-                                  //TODO:ANIMATION
                                 ],
                               ),
                             );
@@ -183,18 +182,7 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              bottomNavigationBar: FloatingNavbar(
-                backgroundColor: CdarkBlue,
-                selectedBackgroundColor: CdarkBlue,
-                selectedItemColor: Corange,
-                onTap: (int val) => setState(() => controller.getbutom()),
-                currentIndex: _index,
-                items: [
-                  FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-                  FloatingNavbarItem(icon: Icons.shopping_cart, title: 'Cart'),
-                  FloatingNavbarItem(icon: Icons.person, title: 'Profile'),
-                ],
-              ),
+              // bottomNavigationBar: NavBar(),
             )),
     );
   }

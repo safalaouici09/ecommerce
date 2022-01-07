@@ -3,7 +3,7 @@ import 'package:shopy/helper/Binding.dart';
 import 'package:shopy/view/home/Home_V.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:shopy/view/home/home_view.dart';
+import 'package:shopy/view/ControlView.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: Binding(),
-      home: HomeView(),
+      home: ControlView(),
     );
   }
 }
