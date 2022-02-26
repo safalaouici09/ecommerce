@@ -5,7 +5,6 @@ import 'package:shopy/model/CartProduct_model.dart';
 import 'package:shopy/model/Product_model.dart';
 import 'package:shopy/view/auth/SignUp.dart';
 import 'package:get/get.dart';
-import 'package:shopy/view/cart/cart.dart';
 
 class Product_Details_View extends StatelessWidget {
   Product product; // =Product(product_name: "",product_image: "");
@@ -19,7 +18,7 @@ class Product_Details_View extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
-                  image: NetworkImage(this.product.product_image),
+                  image: AssetImage(this.product.product_image),
                   fit: BoxFit.cover),
             ),
           ),
@@ -46,7 +45,7 @@ class Product_Details_View extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "dskdhbvjhdscwkjnxqbwgnhfkyuvifoddskdhbvjhdscwkjnxqbwgnhfkyuvifodpdskdhbvjhdscwkjnxqbwgnhfkyuvifodpqskljwxhbceziuopawx;,:df",
+                      this.product.desc,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -61,7 +60,7 @@ class Product_Details_View extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            // color: Color(product.color),
+                            
                           ),
                         )
                       ],
@@ -73,22 +72,14 @@ class Product_Details_View extends StatelessWidget {
                         fontSize: 20,
                       ),
                     ),
-                    GetBuilder<CartViewController>(
-                        init: CartViewController(),
-                        builder: (controller) {
-                          return GestureDetector(
+                    GestureDetector(
                             onTap: () {
-                              controller.addData(CartProduct(
-                                  this.product.product_id,
-                                  this.product.product_name,
-                                  this.product.product_image,
-                                  this.product.price,
-                                  1));
+                             
                               // Get.to(Screen());
                             },
                             child: ColoredContainer(
-                              text: "Add to bag",
-                              color: Corange,
+                              text: "Ajouter au panier",
+                              color: Cpink,
                             ),
                           );
                         })

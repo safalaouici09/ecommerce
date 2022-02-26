@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:shopy/MyText.dart';
 import 'package:shopy/controller/HomeViewController.dart';
 import 'package:shopy/Palette.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:shopy/view/home/Product_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -16,6 +15,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey =
+        new GlobalKey<ScaffoldState>();
     return GetBuilder<HomeViewController>(
       init: HomeViewController(),
       builder: (controller) => controller.loading.value
@@ -24,21 +25,28 @@ class _HomeViewState extends State<HomeView> {
             )
           : SafeArea(
               child: Scaffold(
+              drawer: NavDrawer(),
+              key: _scaffoldKey,
               backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0.0,
                 backgroundColor: Colors.white,
                 title: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(0.0),
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.menu,
-                        size: 30,
-                        color: Colors.black,
+                      GestureDetector(
+                        onTap: () {
+                          _scaffoldKey.currentState!.openDrawer();
+                        },
+                        child: Icon(
+                          Icons.menu,
+                          size: 30,
+                          color: Colors.black,
+                        ),
                       ),
                       SizedBox(
-                        width: 280,
+                        width: 200,
                       ),
                       Icon(
                         Icons.notifications,
@@ -184,6 +192,99 @@ class _HomeViewState extends State<HomeView> {
               ),
               // bottomNavigationBar: NavBar(),
             )),
+    );
+  }
+}
+
+class NavDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Row(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage('assets/profile.jpg'))),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                    ),
+                    MyBoldText(
+                      label: "Safa Laouici",
+                      size: 15.0,
+                      color: Colors.black,
+                    ),
+                    MyText(
+                      label: "Safa@gmail.com",
+                      size: 15.0,
+                      color: Colors.black38,
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: MyText(
+              label: "favorite",
+              size: 20.0,
+              color: Colors.black,
+            ),
+            onTap: () => {},
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: MyText(
+              label: "profile",
+              size: 20.0,
+              color: Colors.black,
+            ),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: MyText(
+              label: "Settings",
+              size: 20.0,
+              color: Colors.black,
+            ),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
+            leading: Icon(Icons.border_color),
+            title: MyText(
+              label: "Feedbacks",
+              size: 20.0,
+              color: Colors.black,
+            ),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: MyText(
+              label: "Logout",
+              size: 20.0,
+              color: Colors.black,
+            ),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+        ],
+      ),
     );
   }
 }

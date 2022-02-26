@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 import 'package:shopy/model/CartProduct_model.dart';
 
 class DatabaseHelper {
-  static final _databaseName = "myBase3.db";
+  static final _databaseName = "myBaseeee.db";
   static final _databaseVersion = 1;
   static final table = "CartTable";
   static final columnId = 'id';

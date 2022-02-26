@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopy/Palette.dart';
+import 'package:get/get.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -20,22 +22,28 @@ class _SignUpState extends State<SignUp> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+            padding:
+                const EdgeInsets.only(top: 20, left: 30, right: 30, bottom: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "SignUp ! ",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    "SignUp ! ",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Mukta',
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Text(
-                  "create an acount so you can order your favorite products ",
+                  "create an acount so you can order your favorite products",
                   style: TextStyle(
-                    color: Colors.black54,
+                    color: Colors.black87,
                     fontSize: 18,
+                    fontFamily: 'Mukta',
                   ),
                 ),
                 SizedBox(
@@ -52,31 +60,36 @@ class _SignUpState extends State<SignUp> {
                   text: "Password",
                   hintText: "**********",
                 ),
-                SizedBox(height: 30),
-                GestureDetector(
-                  onTap: null,
-                  child: ColoredContainer(
-                    text: "Register Now ",
-                    color: Corange,
-                  ),
-                ),
-                SizedBox(height: 30),
-                Center(
-                  child: Text(
-                    "Or continue with ",
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
                 SizedBox(height: 20),
-                ColoredContainer(
-                  text: "Google",
-                  color: Colors.black45,
-                  textColor: Colors.black,
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: null,
+                      child: ColoredContainer(
+                        text: "Register Now ",
+                        color: Corange,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Center(
+                      child: Text(
+                        "Or  ",
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 18,
+                          fontFamily: 'Mukta',
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    SignInButton(
+                      Buttons.Google,
+                      onPressed: () {},
+                    ),
+                    SizedBox(height: 20),
+                    Text("already have an account ? login in ")
+                  ],
                 ),
-                Text("already have an account ? login in ")
               ],
             ),
           ),
@@ -112,7 +125,11 @@ class ColoredContainer extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-              color: textColor, fontSize: 20, fontWeight: FontWeight.w400),
+            color: textColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Mukta',
+          ),
         ),
       ),
     );
@@ -133,8 +150,9 @@ class FormWidget extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            color: Colors.black54,
+            color: Colors.black,
             fontSize: 18,
+            fontFamily: 'Mukta',
           ),
         ),
         SizedBox(
@@ -145,7 +163,8 @@ class FormWidget extends StatelessWidget {
             border: OutlineInputBorder(
                 gapPadding: 2.0, borderRadius: BorderRadius.circular(15)),
             labelStyle: TextStyle(
-              color: Colors.black54,
+              color: Colors.black,
+              fontFamily: 'Mukta',
               fontSize: 18,
             ),
             hintText: hintText,

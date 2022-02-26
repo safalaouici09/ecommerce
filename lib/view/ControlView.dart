@@ -40,7 +40,7 @@ class NavBar extends StatelessWidget {
             items: [
               FloatingNavbarItem(icon: Icons.home, title: 'Home'),
               FloatingNavbarItem(icon: Icons.shopping_cart, title: 'Cart'),
-              FloatingNavbarItem(icon: Icons.person, title: 'Profile'),
+              FloatingNavbarItem(icon: Icons.tag, title: 'Discount'),
             ],
           );
         });

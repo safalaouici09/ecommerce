@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shopy/model/Product_model.dart';
 import 'package:get/get.dart';
+import 'package:shopy/view/DiscountView.dart';
 import 'package:shopy/view/home/home_view.dart';
 import 'package:shopy/view/cart/cart_view.dart';
 
@@ -11,24 +12,31 @@ class ControllController extends GetxController {
   get navigationIndex => _navigationIndex;
   getbutom(int selectedValue) {
     _navigationIndex = selectedValue;
-     switch(selectedValue) { 
-   case 0: { 
-      _currentScreen = HomeView();
-      break;
-   } 
-   break; 
-  
-   case 1: { 
-      _currentScreen  = Cart_View();
-   } 
-   break; 
-      
-   default: { 
-       _currentScreen = HomeView(); 
-   }
-   break; 
-}
-    
+    switch (selectedValue) {
+      case 0:
+        {
+          _currentScreen = HomeView();
+        }
+        break;
+
+      case 1:
+        {
+          _currentScreen = Cart_View();
+        }
+        break;
+      case 2:
+        {
+          _currentScreen = DiscountView();
+        }
+        break;
+
+      default:
+        {
+          _currentScreen = HomeView();
+        }
+        break;
+    }
+
     update();
   }
 }

@@ -49,14 +49,13 @@ class Cart_View extends StatelessWidget {
                             width: MediaQuery.of(context).size.width / 3,
                             height: MediaQuery.of(context).size.height / 3,
                             decoration: BoxDecoration(
-                              // border: BoxBorder(),
                               borderRadius: BorderRadius.circular(15),
-                              /*image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            controller.allProduct[index].product_image,
-                          ),
-                        ),*/
+                              /* image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  controller.cartProducts[index].image,
+                                ),
+                              ),*/
                             ),
                           ),
                           Padding(
@@ -71,9 +70,6 @@ class Cart_View extends StatelessWidget {
                                   size: 25.00,
                                   weight: FontWeight.bold,
                                 ),
-                                Text(
-                                    "Size : " // + controller.allProduct[index].size,
-                                    ),
                                 SizedBox(
                                   //Places des couleurs
                                   height: 40,
@@ -143,5 +139,4 @@ class Circular extends StatelessWidget {
       ),
     );
   }
-} //
-//
+}

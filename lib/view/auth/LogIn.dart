@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shopy/Palette.dart';
 import 'package:shopy/controller/AuthController.dart';
 import 'package:shopy/view/auth/SignUp.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LogIn extends GetWidget<AuthController> {
   LogIn({Key? key}) : super(key: key);
@@ -27,13 +28,15 @@ class LogIn extends GetWidget<AuthController> {
                   "Welcome Back ",
                   style: TextStyle(
                       color: Colors.black,
+                      fontFamily: 'Mukta',
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
                   "Sign in your account  ",
                   style: TextStyle(
-                    color: Colors.black54,
+                    color: Colors.black,
+                    fontFamily: 'Mukta',
                     fontSize: 18,
                   ),
                 ),
@@ -49,38 +52,38 @@ class LogIn extends GetWidget<AuthController> {
                 ),
                 FormWidget(
                   text: "Password",
-                  hintText: "**********",
+                  hintText: "*******",
                 ),
                 SizedBox(height: 30),
-                GestureDetector(
-                  onTap: null,
-                  child: ColoredContainer(
-                    text: "Login in ",
-                    color: Corange,
-                  ),
-                ),
-                SizedBox(height: 30),
-                Center(
-                  child: Text(
-                    "Or continue with ",
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 18,
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: null,
+                      child: ColoredContainer(
+                        text: "Login in ",
+                        color: Corange,
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 30),
+                    Center(
+                      child: Text(
+                        "Or  ",
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    SignInButton(
+                      Buttons.Google,
+                      onPressed: () {},
+                    ),
+                    Text(
+                      "not a membre ? Join now",
+                    )
+                  ],
                 ),
-                SizedBox(height: 20),
-                GestureDetector(
-                  child: ColoredContainer(
-                    text: "Google",
-                    color: Colors.black45,
-                    textColor: Colors.black,
-                  ),
-                  onTap: () {
-                    controller.googleSignIn();
-                  },
-                ),
-                Text("not a membre ? Join now  ")
               ],
             ),
           ),
